@@ -16,6 +16,7 @@
                     <th class="book_writer">著者名</th>
                     <th class="book_publisher">出版社</th>
                     <th class="book_action">内容</th>
+                    <th class="book_date">日付</th>
                 </tr>
                 <c:forEach var="bookt" items="${books}" varStatus="status">
                     <tr class="row${status.count % 2}">

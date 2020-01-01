@@ -37,11 +37,11 @@ public class Book {
     @Column(name = "title", length = 255, nullable = false)
     private String title;
 
-    @Column(name = "writer_date", length = 255,  nullable = false)
-    private Date writer_date;
+    @Column(name = "writer", length = 255,  nullable = false)
+    private String writer;
 
-    @Column(name = "publisher_date", length = 255, nullable = false)
-    private Date publisher_date;
+    @Column(name = "publisher", length = 255, nullable = false)
+    private String publisher;
 
     @Lob
     @Column(name = "content", nullable = false)
@@ -77,20 +77,20 @@ public class Book {
         this.title = title;
     }
 
-    public Date getWriter_date() {
-        return writer_date;
+    public String getWriter() {
+        return writer;
     }
 
-    public void setWriter_date(Date writer_date) {
-        this.writer_date = writer_date;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
-    public Date getPublisher_date() {
-        return publisher_date;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setPublisher_date(Date publisher_date) {
-        this.publisher_date = publisher_date;
+    public void setPublishere(String publisher) {
+        this.publisher = publisher;
     }
 
     public String getContent() {
@@ -116,4 +116,6 @@ public class Book {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+
 }
