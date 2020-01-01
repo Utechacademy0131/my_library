@@ -18,12 +18,13 @@
                     <th class="book_action">内容</th>
                     <th class="book_date">日付</th>
                 </tr>
-                <c:forEach var="bookt" items="${books}" varStatus="status">
+                <c:forEach var="book" items="${books}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="book_title"><c:out value="${book.book.title}" /></td>
-                        <td class="book_date"><fmt:formatDate value='${book.book_writer}' /></td>
+                        <td class="book_title">${book.title}</td>
+                        <td class="book_writer">${book.writer}</td>
                         <td class="book_publisher">${book.publisher}</td>
                         <td class="book_action"><a href="<c:url value='/books/show?id=${book.id}' />">内容を見る</a></td>
+                         <td class="report_date"><fmt:formatDate value='${book.book_date}' pattern='yyyy-MM-dd' /></td>
                     </tr>
                 </c:forEach>
             </tbody>

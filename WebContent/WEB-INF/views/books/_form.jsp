@@ -23,7 +23,7 @@
 <br /><br />
 
 <label for="content">内容</label><br />
-<textarea name="content" rows="10" cols="50">${bookt.content}</textarea>
+<textarea name="content" rows="10" cols="50">${book.content}</textarea>
 <br /><br />
 
 <label for="bookt_date">日付</label><br />
