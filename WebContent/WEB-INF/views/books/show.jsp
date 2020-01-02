@@ -40,6 +40,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <p><a href="<c:url value="/books/edit?id=${book.id}" />">この日報を編集する</a></p>
             </c:when>
             <c:otherwise>
                 <h2>お探しの本は見つかりませんでした。</h2>
