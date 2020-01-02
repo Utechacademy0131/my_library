@@ -51,7 +51,7 @@ public class BooksCreateServlet extends HttpServlet {
 
             b.setTitle(request.getParameter("title"));
             b.setWriter(request.getParameter("writer"));
-            b.setPublishere(request.getParameter("publisher"));
+            b.setPublisher(request.getParameter("publisher"));
             b.setContent(request.getParameter("content"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
