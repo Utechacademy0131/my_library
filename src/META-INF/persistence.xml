@@ -3,6 +3,7 @@
 	<persistence-unit name="my_library" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>models.Book</class>
+		<class>models.Admin</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/my_library?useSSL=false&amp;Unicode=true&amp;characterEncoding=utf8"/>

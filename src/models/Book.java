@@ -53,6 +53,17 @@ public class Book {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "book_flag", nullable = false)
+    private Integer book_flag;
+
+    public Integer getBook_flag() {
+        return book_flag;
+    }
+
+    public void setBook_flag(Integer book_flag) {
+        this.book_flag = book_flag;
+    }
+
     public Integer getId() {
         return id;
     }

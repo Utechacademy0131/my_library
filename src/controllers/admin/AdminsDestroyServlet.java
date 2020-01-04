@@ -1,4 +1,4 @@
-package controllers.book;
+package controllers.admin;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Book;
+import models.Admin;
 import utils.DBUtil;
 
 /**
  * Servlet implementation class EmployeesDestroyServlet
  */
-@WebServlet("/books/destroy")
-public class BooksDestroyServlet extends HttpServlet {
+@WebServlet("/admins/destroy")
+public class AdminsDestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BooksDestroyServlet() {
+    public AdminsDestroyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +36,16 @@ public class BooksDestroyServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Book b = em.find(Book.class, (Integer)(request.getSession().getAttribute("book_id")));
-            b.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+            Admin a = em.find(Admin.class, (Integer)(request.getSession().getAttribute("admin_id")));
+            a.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             em.getTransaction().begin();
-            em.remove(b);
+            em.remove(a);
             em.getTransaction().commit();
             em.close();
             request.getSession().setAttribute("flush", "削除が完了しました。");
 
-            response.sendRedirect(request.getContextPath() + "/books/index");
+            response.sendRedirect(request.getContextPath() + "/admins/index");
         }
     }
 

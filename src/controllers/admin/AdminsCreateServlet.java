@@ -1,7 +1,6 @@
-package controllers.book;
+package controllers.admin;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -13,21 +12,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Book;
-import models.validators.BookValidator;
+import models.Admin;
+import models.validators.AdminValidator;
 import utils.DBUtil;
+import utils.EncryptUtil;
 
 /**
- * Servlet implementation class ReportsCreateServlet
+ * Servlet implementation class EmployeesCreateServlet
  */
-@WebServlet("/books/create")
-public class BooksCreateServlet extends HttpServlet {
+@WebServlet("/admins/create")
+public class AdminsCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BooksCreateServlet() {
+    public AdminsCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,43 +40,39 @@ public class BooksCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Book b = new Book();
+            Admin a = new Admin();
 
-            Date book_date = new Date(System.currentTimeMillis());
-            String rd_str = request.getParameter("book_date");
-            if(rd_str != null && !rd_str.equals("")) {
-                book_date = Date.valueOf(request.getParameter("book_date"));
-            }
-            b.setBook_date(book_date);
-
-            b.setTitle(request.getParameter("title"));
-            b.setWriter(request.getParameter("writer"));
-            b.setPublisher(request.getParameter("publisher"));
-            b.setContent(request.getParameter("content"));
-            b.setBook_flag(Integer.parseInt(request.getParameter("book_flag")));
+            a.setName(request.getParameter("name"));
+            a.setPassword(
+                    EncryptUtil.getPasswordEncrypt(
+                            request.getParameter("password"),
+                            (String)this.getServletContext().getAttribute("salt")
+                            )
+                    );
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            b.setCreated_at(currentTime);
-            b.setUpdated_at(currentTime);
+            a.setCreated_at(currentTime);
+            a.setUpdated_at(currentTime);
+            a.setDelete_flag(0);
 
-            List<String> errors = BookValidator.validate(b);
+            List<String> errors =AdminValidator.validate(a, true, true);
             if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("book", b);
+                request.setAttribute("admin", a);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/books/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admins/new.jsp");
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
-                em.persist(b);
+                em.persist(a);
                 em.getTransaction().commit();
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                response.sendRedirect(request.getContextPath() + "/books/index");
+                response.sendRedirect(request.getContextPath() + "/admins/index");
             }
         }
     }

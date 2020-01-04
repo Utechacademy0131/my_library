@@ -26,9 +26,16 @@
 <textarea name="content" rows="10" cols="50">${book.content}</textarea>
 <br /><br />
 
-<label for="bookt_date">日付</label><br />
+<label for="book_date">日付</label><br />
 <input type="date" name="book_date" value="<fmt:formatDate value='${book.book_date}' pattern='yyyy-MM-dd' />" />
 <br /><br />
 
+<label for="admin_flag">購入状況</label><br />
+<select name="book_flag">
+    <option value="0"<c:if test="${book.book_flag == 0}"> selected</c:if>>購入</option>
+    <option value="1"<c:if test="${book.book_flag == 1}"> selected</c:if>>未購入</option>
+</select>
+<br /><br />
+
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">決定</button>
+<button type="submit">登録</button>

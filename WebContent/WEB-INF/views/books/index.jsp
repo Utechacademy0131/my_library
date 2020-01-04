@@ -17,6 +17,7 @@
                     <th class="book_publisher">出版社</th>
                     <th class="book_action">内容</th>
                     <th class="book_date">日付</th>
+                    <th class="book_flag">購入状況</th>
                 </tr>
                 <c:forEach var="book" items="${books}" varStatus="status">
                     <tr class="row${status.count % 2}">
@@ -24,7 +25,13 @@
                         <td class="book_writer">${book.writer}</td>
                         <td class="book_publisher">${book.publisher}</td>
                         <td class="book_action"><a href="<c:url value='/books/show?id=${book.id}' />">内容を見る</a></td>
-                         <td class="report_date"><fmt:formatDate value='${book.book_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="report_date"><fmt:formatDate value='${book.book_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="book_fiag">
+                        <c:choose>
+                            <c:when test="${book.book_flag == 1}">未購入</c:when>
+                            <c:otherwise>購入</c:otherwise>
+                        </c:choose>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
