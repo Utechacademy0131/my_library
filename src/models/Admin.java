@@ -22,8 +22,8 @@ import javax.persistence.Table;
             query = "SELECT COUNT(a) FROM Admin AS a"
             ),
     @NamedQuery(
-            name = "checkLoginCodeAndPassword",
-            query = "SELECT a FROM Admin AS a WHERE a.delete_flag = 0 AND a.name = :code AND a.password = :pass"
+            name = "checkLoginNameAndPassword",
+            query = "SELECT a FROM Admin AS a WHERE a.name = :name AND a.password = :pass"
             )
 })
 @Entity

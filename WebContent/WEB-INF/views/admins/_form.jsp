@@ -11,7 +11,7 @@
 </c:if>
 
 <label for="name">氏名</label><br />
-<input type="text" name="name" value="${employee.name}" />
+<input type="text" name="name" value="${admin.name}" />
 <br /><br />
 
 <label for="password">パスワード</label><br />

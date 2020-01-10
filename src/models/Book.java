@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,13 +25,27 @@ import javax.persistence.Table;
             name = "getBooksCount",
             query = "SELECT COUNT(b) FROM Book AS b"
             ),
+    @NamedQuery(
+            name = "getMyAllBooks",
+            query = "SELECT b FROM Book AS b WHERE b.admin = :admin ORDER BY b.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyBooksCount",
+            query = "SELECT COUNT(b) FROM Book AS b WHERE b.admin = :admin"
+            )
+
 })
 @Entity
 public class Book {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_name", nullable = false)
+    private Admin admin;
 
     @Column(name = "book_date", nullable = false)
     private Date book_date;
@@ -70,6 +86,14 @@ public class Book {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     public Date getBook_date() {

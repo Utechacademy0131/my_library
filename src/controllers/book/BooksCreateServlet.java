@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Admin;
 import models.Book;
 import models.validators.BookValidator;
 import utils.DBUtil;
@@ -41,6 +42,8 @@ public class BooksCreateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             Book b = new Book();
+
+            b.setAdmin((Admin)request.getSession().getAttribute("login_admin"));
 
             Date book_date = new Date(System.currentTimeMillis());
             String rd_str = request.getParameter("book_date");

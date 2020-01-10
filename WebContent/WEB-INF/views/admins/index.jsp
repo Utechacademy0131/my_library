@@ -46,6 +46,7 @@
             </c:forEach>
         </div>
         <p><a href="<c:url value='/admins/new'  />">新規管理者の登録</a></p>
+        <p><a href="<c:url value='/books/index'  />">本の一覧に戻る</a></p>
 
     </c:param>
 </c:import>
