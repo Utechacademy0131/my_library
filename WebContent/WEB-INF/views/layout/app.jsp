@@ -12,16 +12,22 @@
         <div id="wrapper">
             <div id="header">
                 <div id="header_menu">
-                    <h1><a href="<c:url value='/' />">本棚</a></h1>&nbsp;&nbsp;&nbsp;
-                    <c:if test="${sessionScope.login_admin != null}">
+                    <h1><c:choose>
+                             <c:when test="${sessionScope.login_admin != null}">
+                                 <<a href="<c:url value='/' />">本棚  管理者のページ</a>
+                             </c:when>
+                             <c:otherwise>
+                                 <<a href="<c:url value='/' />">本棚</a>
+                             </c:otherwise>
+                             </c:choose></h1>&nbsp;&nbsp;&nbsp;
 
-                        <a href="<c:url value='/books/new' />">新しい本の登録</a>&nbsp;
+                    <c:if test="${sessionScope.login_admin != null}">
+                         <a href="<c:url value='/books/new' />">新しい本の登録</a>&nbsp;
                          <a href="<c:url value='/admins/index' />">管理者の管理</a>&nbsp
                     </c:if>
                 </div>
                 <c:if test="${sessionScope.login_admin != null}">
                     <div id="admin_name">
-                        <c:out value="${sessionScope.login_admin.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">ログアウト</a>
                     </div>
                 </c:if>

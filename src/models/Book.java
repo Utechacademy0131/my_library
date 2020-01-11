@@ -32,7 +32,15 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getMyBooksCount",
             query = "SELECT COUNT(b) FROM Book AS b WHERE b.admin = :admin"
-            )
+            ),
+    @NamedQuery(
+            name = "getSearchBooks",
+            query = "SELECT b FROM Book AS b WHERE b.title LIKE :keyword"
+            ),
+    @NamedQuery(
+            name = "getSearchBooksCount",
+            query = "SELECT COUNT(b) FROM Book AS b WHERE b.title LIKE :keyword"
+            ),
 
 })
 @Entity

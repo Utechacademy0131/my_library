@@ -15,7 +15,7 @@
 <br /><br />
 
 <label for="title">著者名</label><br />
-<input type="text" name="writer" value="${book. writer}" />
+<input type="text" name="writer" value="${book.writer}" />
 <br /><br />
 
 <label for="title">出版社</label><br />

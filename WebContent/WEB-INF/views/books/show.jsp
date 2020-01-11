@@ -40,7 +40,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <p><a href="<c:url value="/books/edit?id=${book.id}" />">この日報を編集する</a></p>
+                <c:choose>
+                    <c:when test="${sessionScope.login_admin != null}">
+                            <p><a href="<c:url value="/books/edit?id=${book.id}" />">この本を編集する</a></p>
+                    </c:when>
+               </c:choose>&nbsp;&nbsp;&nbsp;
+
             </c:when>
             <c:otherwise>
                 <h2>お探しの本は見つかりませんでした。</h2>

@@ -8,7 +8,14 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>一覧</h2>
+        <h2>管理一覧</h2>
+        <form method="POST" action="<c:url value='/books/search' />">
+           <label for="content">検索用語</label><br />
+           <textarea name="keyword" rows="1" cols="50">${keyword}</textarea>
+            <input type="hidden" name="_token" value="${_token}" />
+            <button type="submit">検索</button>
+           <br /><br />
+        </form>
         <table id="book_list">
             <tbody>
                 <tr>
@@ -50,7 +57,7 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/books/new' />">新しい本の登録</a></p>
+        <p><a href="<c:url value='/' />">登録をやめる</a></p>
 
     </c:param>
 </c:import>

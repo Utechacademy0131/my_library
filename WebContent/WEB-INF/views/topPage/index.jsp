@@ -9,8 +9,14 @@
             </div>
         </c:if>
         <h2>本の一覧</h2>
-         <a href="<c:url value='/logout' />">本の検索</a>
-          <a href="<c:url value='/login' />">管理者用のページ</a>
+                  <form method="POST" action="<c:url value='/books/search' />">
+           <label for="content">検索用語</label><br />
+           <textarea name="keyword" rows="1" cols="50">${keyword}</textarea>
+            <input type="hidden" name="_token" value="${_token}" />
+            <button type="submit">検索</button>
+           <br /><br />
+        </form>
+
         <table id="book_list">
             <tbody>
                 <tr>
@@ -36,10 +42,9 @@
                         </td>
                     </tr>
                 </c:forEach>
-
             </tbody>
         </table>
-
+            <a href="<c:url value='/login' />">管理者用のページ</a>
         <div id="pagination">
             （全 ${books_count} 件）<br />
             <c:forEach var="i" begin="1" end="${((books_count - 1) / 15) + 1}" step="1">

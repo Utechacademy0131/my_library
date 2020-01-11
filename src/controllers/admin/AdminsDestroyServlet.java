@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Admin;
 import utils.DBUtil;
@@ -32,7 +33,14 @@ public class AdminsDestroyServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String _token = (String)request.getParameter("_token");
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("login_admin") == null) {
+            response.sendRedirect(request.getContextPath() + "/");
+
+        } else {
+
+            String _token = (String)request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
@@ -48,5 +56,5 @@ public class AdminsDestroyServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/admins/index");
         }
     }
-
+    }
 }

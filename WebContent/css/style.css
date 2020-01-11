@@ -118,10 +118,10 @@ select {
     display: inline-block;
 }
 
-#employee_name {
+#admin_name {
     color: #cccccc;
     width: 36%;
-    padding-right: 3%;
+    padding-right: 30%;
     text-align: right;
     display: inline-block;
 }

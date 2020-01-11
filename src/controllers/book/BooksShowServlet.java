@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Book;
 import utils.DBUtil;
@@ -33,6 +34,8 @@ public class BooksShowServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+
         EntityManager em = DBUtil.createEntityManager();
 
         Book b = em.find(Book.class, Integer.parseInt(request.getParameter("id")));
@@ -45,5 +48,4 @@ public class BooksShowServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/books/show.jsp");
         rd.forward(request, response);
     }
-
-}
+    }

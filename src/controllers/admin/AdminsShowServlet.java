@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Admin;
 import utils.DBUtil;
@@ -32,6 +33,13 @@ public class AdminsShowServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("login_admin") == null) {
+            response.sendRedirect(request.getContextPath() + "/");
+
+        } else {
+
         EntityManager em = DBUtil.createEntityManager();
 
         Admin a = em.find(Admin.class, Integer.parseInt(request.getParameter("id")));
@@ -43,5 +51,5 @@ public class AdminsShowServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admins/show.jsp");
         rd.forward(request, response);
     }
-
+    }
 }

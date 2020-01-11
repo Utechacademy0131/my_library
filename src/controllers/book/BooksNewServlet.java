@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Book;
 
@@ -31,7 +32,16 @@ public class BooksNewServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("login_admin") == null) {
+            response.sendRedirect(request.getContextPath() + "/");
+
+        } else {
+
         request.setAttribute("_token", request.getSession().getId());
+
 
         Book b = new Book();
         b.setBook_date(new Date(System.currentTimeMillis()));
@@ -40,5 +50,5 @@ public class BooksNewServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/books/new.jsp");
         rd.forward(request, response);
     }
-
+    }
 }

@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("login_admin", a);
 
             request.getSession().setAttribute("flush", "ログインしました。");
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/books/index");
         }
     }
 
