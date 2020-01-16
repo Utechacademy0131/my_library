@@ -36,9 +36,9 @@ public class BookSearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        String keyword = request.getParameter("keyward");
+        String keyword = request.getParameter("keyword");
 
-        List<Book> query = em.createNamedQuery("getSearchBooks",Book.class)
+        List<Book> b = em.createNamedQuery("getSearchBooks",Book.class)
                               .setParameter("keyword", "%" + keyword + "%")
                               .getResultList();
         long books_count = (long) em.createNamedQuery("getSearchBooksCount", Long.class)
@@ -47,7 +47,7 @@ public class BookSearchServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("books", query);
+        request.setAttribute("books", b);
         request.setAttribute("books_count", books_count);
 
         HttpSession session = request.getSession(false);
