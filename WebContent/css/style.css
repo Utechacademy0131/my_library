@@ -8,7 +8,7 @@ body {
 #header {
     width: 100%;
     height: 70px;
-    background-color: #333333;
+    background-color: #000000;
 }
 
 #content {
@@ -90,12 +90,12 @@ button {
     background-color: #f8d7da;
 }
 
-table#employee_list th {
+table#admin_list th {
     width: 30%;
     padding: 10px 2%;
 }
 
-table#employee_list td {
+table#admin_list td {
     width: 29%;
     padding: 10px 2%;
 }
@@ -121,7 +121,6 @@ select {
 #admin_name {
     color: #cccccc;
     width: 36%;
-    padding-right: 30%;
     text-align: right;
     display: inline-block;
 }
@@ -134,24 +133,24 @@ h1 a {
     color: #eeeeee;
 }
 
-table#report_list th {
+table#book_list th {
     font-weight: bold;
     padding: 10px 2%;
 }
 
-table#report_list .report_name {
+table#book_list .report_name {
     width: 20%;
     padding: 10px 2%;
 }
-table#report_list .report_date {
+table#book_list .report_date {
     width: 20%;
 }
 
-table#report_list .report_title {
+table#book_list .report_title {
     width: 37%;
 }
 
-table#report_list .report_action {
+table#book_list .report_action {
     width: 13%;
 }
 
